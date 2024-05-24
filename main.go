@@ -1,6 +1,10 @@
 package main
 
 import (
+	"Brennon-Oliveira/TaskMasterPro-ProjectService/pkg/db"
+	"log"
+	"os"
+
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
@@ -12,16 +16,17 @@ func main() {
 		panic("Error loading .env file")
 	}
 
-	// Create a new Gin router
-	router := gin.Default()
+	r := gin.Default()
 
-	// Define your routes
-	router.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "Hello, World!",
-		})
-	})
+	dbConn := db.InitPostgres()
+	defer dbConn.Close()
 
-	// Run the server
-	router.Run(":8080")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	if err := r.Run(":" + port); err != nil {
+		log.Fatalf("Error starting server: %s", err)
+	}
 }
