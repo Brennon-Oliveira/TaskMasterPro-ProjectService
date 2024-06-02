@@ -2,7 +2,7 @@ package main
 
 import (
 	"Brennon-Oliveira/TaskMasterPro-ProjectService/internal/handlers"
-	"Brennon-Oliveira/TaskMasterPro-ProjectService/internal/pkg/db"
+	"Brennon-Oliveira/TaskMasterPro-ProjectService/pkg/db"
 	"log"
 	"os"
 
