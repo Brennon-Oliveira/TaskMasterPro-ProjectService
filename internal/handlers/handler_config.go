@@ -2,9 +2,11 @@ package handlers
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
-func RegistryRoutes(*gin.Engine, *gorm.DB) {
+func RegistryRoutes(r *gin.Engine, db *gorm.DB) {
 	
+	registryProjectRoutes(r, db)
+
 }

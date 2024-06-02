@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/jinzhu/gorm"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 func InitPostgres() *gorm.DB {
@@ -17,14 +18,12 @@ func InitPostgres() *gorm.DB {
 
 	dsn := fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=disable", host, port, user, dbname, password)
 
-	db, err := gorm.Open("postgres", dsn)
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil{
 		panic(err)
 	}
 	
 	db.AutoMigrate(&models.Project{}, &models.Member{})
-
-	db.LogMode(true)
 
 	return db
 

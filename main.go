@@ -1,7 +1,8 @@
 package main
 
 import (
-	"Brennon-Oliveira/TaskMasterPro-ProjectService/pkg/db"
+	"Brennon-Oliveira/TaskMasterPro-ProjectService/internal/handlers"
+	"Brennon-Oliveira/TaskMasterPro-ProjectService/internal/pkg/db"
 	"log"
 	"os"
 
@@ -19,7 +20,8 @@ func main() {
 	r := gin.Default()
 
 	dbConn := db.InitPostgres()
-	defer dbConn.Close()
+
+	handlers.RegistryRoutes(r, dbConn)
 
 	port := os.Getenv("PORT")
 	if port == "" {

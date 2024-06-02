@@ -3,7 +3,7 @@ package repositories
 import (
 	"Brennon-Oliveira/TaskMasterPro-ProjectService/internal/models"
 
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 type ProjectRepository struct {

@@ -8,7 +8,7 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 func registryProjectRoutes(r *gin.Engine, db *gorm.DB) {
